@@ -1,6 +1,5 @@
 <?php
 session_start();
-	echo '<link rel="stylesheet" type="text/css" href="main_style.css">';
 include("../../includes/included_functions_delegate.php");
 if(isset($_POST["submit"]))
 {
@@ -12,7 +11,7 @@ if(isset($_POST["submit"]))
 	if($val < 0)
 		echo "Try again.";
 	else
-		echo "Delegate number is : $val<br><form action='details.php'><input type='submit' name='submit' value='Enter more details'></form>";
+		echo " Delegate number is : $val<br><form action='details.php'><input type='submit' name='submit' value='Enter more details'></form>";
 	//unset the session variable
 	session_unset();
 }

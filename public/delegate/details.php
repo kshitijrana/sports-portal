@@ -40,25 +40,23 @@ if(isset($_POST["submit"]))
 }
 ?>
 <!DOCTYPE html>
-<head>
-	<link rel="stylesheet" type="text/css" href="details_style.css">
-<title>
-Participant Details
-</title>
+<head>title>Participant Details</title>
 </head>
-<body style="color:#ffffff;">
+<body>
 <div id="details">
 <form method="POST" action="details.php">
+	<div class="row uniform">
 					<?php echo $message."<br>";?>
-	Enter details : <br><input type="text" name="name" placeholder="Name" required="required" autofocus="autofocus">
-					<br><br><input type="text" name="regno" placeholder="Registration Number" required="required">
-					<br><br><input type="text" name="college" placeholder="College" required="required">
-					<br><br><input type="text" name="email" placeholder="Email" required="required">
-					<br><br><input type="text" name="phone" placeholder="Phone Number" required="required">
-					<br><br><input type="radio" name="gender" value="Male" required="required"><label for="male">Male</label>
-					<br><br><input type="radio" name="gender" value="Female" required="required"><label for="female">Female</label>
-					<br><br><input type="submit" name="submit">
+	Enter details : <br><input type="text" name="name" placeholder="Name" required autofocus></div>
+					<br><br><input type="text" name="regno" placeholder="Registration Number" required></div>
+					<br><br><input type="text" name="college" placeholder="College" required></div>
+					<br><br><input type="text" name="email" placeholder="Email" required></div>
+					<br><br><input type="text" name="phone" placeholder="Phone Number" required></div>
+					<br><br><input type="radio" name="gender" value="Male" required><label for="male">Male</label></div>
+					<br><br>><input type="radio" name="gender" value="Female" required><label for="female">Female</label></div>
+					<br><input type="submit" name="submit"></div>
 
+	</div>
 </form>
 </div>
 </body>

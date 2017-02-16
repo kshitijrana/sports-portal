@@ -22,6 +22,9 @@
 	{
 		//make connection with database
 		$conn = make_connection('revels17');
+		//use mysqli_real_escape_string to protect the data
+		$d_number = mysqli_real_escape_string($conn,$d_number);
+		$gender = mysqli_real_escape_string($conn,$gender);
 		//query to check if the participant exists
 		$query = 'SELECT COUNT(1) FROM participant WHERE ID = '.$d_number;
 		$res = mysqli_query($conn,$query);
@@ -58,8 +61,10 @@
 	{
 		//make connection
 		$conn = make_connection('revels17');
+		//use mysqli_real_escape_string to protect the data
+		$d_number = mysqli_real_escape_string($conn,$delegate_number);
 		//check if the participant exists
-		$query = 'SELECT * FROM participant WHERE ID = '.$delegate_number;
+		$query = 'SELECT * FROM participant WHERE ID = '.$d_number;
 		$res = mysqli_query($conn,$query);
 		if(!$res)
 			return -99;
@@ -81,6 +86,8 @@
 	{
 		//make connection with database
 		$conn = make_connection('revels17');
+		//use mysqli_real_escape_string to protect the data
+		$t_id = mysqli_real_escape_string($conn,$t_id);
 		//query to check if the participant exists
 		$query = 'SELECT COUNT(1) FROM team WHERE TEAM_ID = '.$t_id;
 		$res = mysqli_query($conn,$query);
@@ -122,13 +129,18 @@
 	}
 
 	//function to add values to the team table (used in show_confirmed.php)
-	function insert_team_info($team_id,$delegate_number,$gender,$sport)
-	{		
+	function insert_team_info($team_id,$delegate_number,$gender,$sport,$user_id,$admin_id)
+	{	
+		//get the registration number
+		$data = retrieve_info($delegate_number,1);	
 		//make connection
 		$conn = make_connection('revels17');
-		//get the registration number
-		$data = retrieve_info($delegate_number,1);
-		$query = 'INSERT INTO team VALUES("'.$team_id.'","'.$delegate_number.'","'.$data[0]. '","'.$data[1] . '","'.$gender.'","'.$sport.'","' . '1")';
+		//use mysqli_real_escape_string to protect the data
+		$team_id = mysqli_real_escape_string($conn,$team_id);
+		$delegate_number = mysqli_real_escape_string($conn,$delegate_number);
+		$gender = mysqli_real_escape_string($conn,$gender);
+		$sport = mysqli_real_escape_string($conn,$sport);
+		$query = 'INSERT INTO team VALUES("'.$team_id.'","'.$delegate_number.'","'.$data[0]. '","'.$data[1] . '","'.$gender.'","'.$sport.'",' . '1,' .$user_id.','.$admin_id.')';
 		$res = mysqli_query($conn,$query);
 		if(!$res)
 		{
@@ -158,6 +170,8 @@
 	function check_if_team_id_exists($team_id){
 		//make connection
 		$conn = make_connection("revels17");
+		//use mysqli_real_escape_string to protect the data
+		$team_id = mysqli_real_escape_string($conn,$team_id);
 		$query = "SELECT COUNT(1) FROM team WHERE TEAM_ID = '" . $team_id . "'";
 		$res = mysqli_query($conn,$query);
 		if(!$res)
@@ -186,6 +200,33 @@
 				}
 				$_SESSION["team_info"] = $arr;
 			}
+			return 1;
+		}
+	}
+
+	function check_existence($d_id,$sport)
+	{
+		//make connection
+		$conn = make_connection("revels17");
+		//use mysqli_real_escape_string to protect the data
+		$delegate_id = mysqli_real_escape_string($conn,$d_id);
+		$sport = mysqli_real_escape_string($conn,$sport);
+		//to do: check if the delegate number has already registered for the same sport
+		$query = "SELECT COUNT(1) FROM team WHERE D_ID = " . $delegate_id . " AND sport = '" .$sport."'";
+		$res = mysqli_query($conn,$query);
+		if(!$res)
+		{
+			//query failed
+			return -99;
+		}
+		else{
+			$log = mysqli_fetch_assoc($res);
+			if($log["COUNT(1)"] == 0)
+			{
+				//team_id does not exist
+				return 0;
+			}
+			$_SESSION["excep_id"] = $d_id;
 			return 1;
 		}
 	}

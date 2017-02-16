@@ -1,5 +1,5 @@
 <?php
-include("included_functions.php");
+include("../../includes/included_functions_search.php");
 session_start();
 $team_id_flag = $_SESSION["team_id_flag"];
 $d_id_flag = $_SESSION["d_id_flag"];

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("included_functions.php");
+include("../../includes/included_functions_teamreg.php");
 $message="";
 $number_of_players = (int)$_SESSION["playernum"];
 $flag = 1;

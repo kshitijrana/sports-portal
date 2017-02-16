@@ -1,7 +1,7 @@
 <?php
 $msg="";
 session_start();
-include("included_functions.php");
+include("../../includes/included_functions_teamreg.php");
 if(isset($_POST["submit"]))
 {
 	if(is_numeric($_POST["team_id"])){

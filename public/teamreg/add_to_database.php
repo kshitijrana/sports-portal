@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("included_functions.php");
+include("../../includes/included_functions_teamreg.php");
 $info = $_SESSION["team_info"];
 $flag = 0;
 $sport = $_SESSION["sport"];
@@ -25,7 +25,7 @@ if(isset($_POST["submit"]))
 	else
 	{
 		echo "Updated successfully.";
-		echo "<br><a href='get_info.php'>Go back.</a>"
+		echo "<br><a href='get_info.php'>Go back.</a>";
 		die();
 	}
 

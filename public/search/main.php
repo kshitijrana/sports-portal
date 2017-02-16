@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("included_functions.php");
+include("../../includes/included_functions_search.php");
 $message="";
 if(isset($_POST["submit"]))
 {

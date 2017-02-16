@@ -18,7 +18,7 @@
 	}
 
 	//function to validate the user and admin details
-	function match_info($uu,$up,$au,$ap)
+	function match_user_admin($uu,$up,$au,$ap)
 	{
 		$conn = make_connection("revels17");
 		$query_1 = "SELECT * FROM user";
@@ -27,6 +27,7 @@
 		$a_flag = 0;
 		$res_1 = mysqli_query($conn,$query_1);
 		$res_2 = mysqli_query($conn,$query_2);
+		$arr = array();
 		if(is_null($res_1) or is_null($res_2))
 			return -99;
 		else
@@ -35,6 +36,7 @@
 			{
 				if((strcmp($uu, $log["username"]) == 0) && (strcmp($up, $log["password"])==0))
 				{
+					array_push($arr,$log["ID"]);
 					$u_flag = 1;
 					break;
 				}
@@ -43,13 +45,14 @@
 			{
 				if((strcmp($au, $log["username"]) == 0) && (strcmp($ap, $log["password"])==0))
 				{
+					array_push($arr,$log["ID"]);
 					$a_flag=1;
 					break;
 				}
 			}
 			if($u_flag and $a_flag)
 			{
-				return 1;
+				return $arr;
 			}
 			else
 			{
@@ -60,7 +63,7 @@
 
 	//function to insert participant details in database
 
-	function insert_data($info)
+	function insert_data($info,$u_id,$a_id)
 	{
 		//take out the data
 		$name = $info["name"];
@@ -71,7 +74,7 @@
 		$gender = $info["gender"];
 		//make a connection to the database
 		$conn = make_connection("revels17");
-		$query = "INSERT INTO participant (NAME,REGNO,CLG_NAME,EMAIL,PHONE,GENDER) VALUES(\"". $name . "\",\"" . $regno . "\",\"".$college. "\",\"".$email . "\",\"". $phone."\",\"".$gender."\")";
+		$query = 'INSERT INTO participant (NAME,REGNO,CLG_NAME,EMAIL,PHONE,GENDER,USER_ID,ADMIN_ID) VALUES("'.$name.'","'.$regno.'","'.$college.'","'.$email.'","'.$phone.'","'.$gender.'")';
 
 		$res = mysqli_query($conn,$query);
 		if(!$res)

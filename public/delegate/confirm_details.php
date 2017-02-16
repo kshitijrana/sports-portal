@@ -15,7 +15,6 @@ if(isset($_SESSION["participant_details"]))
 	$gender = $info["gender"];
 	echo "	<!DOCTYPE html>
 			<head>
-			<link rel='stylesheet' type='text/css' href='confirm_details_style.css'>
 			<title>Confirm details</title>
 			</head>
 			<body style='color=#ffffff;'>
