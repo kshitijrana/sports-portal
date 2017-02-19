@@ -36,6 +36,11 @@
 		return 0;
 	}
 
+	function validate_phone($var)
+{
+	return preg_match("/^[+]{0,1}[0-9]{10,12}$/", $var);	
+}
+
 	function check_email($email)
 	{
 		return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;

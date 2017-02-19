@@ -93,9 +93,16 @@
 		}
 	}
 
-	function add_delegates($name,$regno,$email,$phone,$college,$price)
+	function make_prpstmt_object()
 	{
 		$conn = make_connection("revels17");
+		$query = "INSERT INTO delegates (name, regno, email, phone, college, price) VALUES (?,?,?,?,?,?);";
+		$stmt = mysqli_prepare($conn,$query);
+		return array($stmt,$conn);
+	}
+
+	function add_delegates($name,$regno,$email,$phone,$college,$price,$stmt,$conn)
+	{
 		//get the escape string
 		$name = mysqli_real_escape_string($conn,$name);
 		$regno = mysqli_real_escape_string($conn,$regno);
@@ -103,12 +110,10 @@
 		$phone = mysqli_real_escape_string($conn,$phone);
 		$college = mysqli_real_escape_string($conn,$college);
 		$price = mysqli_real_escape_string($conn,$price);
-		$query = "INSERT INTO delegates (name, regno, email, phone, college, price) VALUES (?,?,?,?,?,?);";
-		$stmt = mysqli_prepare($conn,$query);
 		mysqli_stmt_bind_param($stmt, 'ssssss', $name, $regno, $email, $phone, $college, $price);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_fetch($stmt);
-		mysqli_stmt_close($stmt);
+		//mysqli_stmt_close($stmt);
 		$id=mysqli_insert_id($conn);
 		return $id;
 	}
