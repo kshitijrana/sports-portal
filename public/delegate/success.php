@@ -7,7 +7,7 @@ if(isset($_POST["submit"]))
 	$cookie = $_SESSION["participant_details"];
 	//set parameter true to convert object into associative array
 	$info = json_decode($cookie, true);
-	$val = insert_data($info);
+	$val = insert_data($info,$_SESSION["user_id"],$_SESSION["admin_id"]);
 	if($val < 0)
 		echo "Try again.";
 	else

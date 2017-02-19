@@ -1,10 +1,6 @@
 <?php
 include("../../includes/included_functions_delegate.php");
 $message="";
-if(!isset($_SESSION["user_id"]))
-{
-	redirect_to("index.php");
-}
 if(isset($_POST["submit"]))
 {
 	$check = match_user_admin($_POST["user_username"],$_POST["user_password"],$_POST["admin_username"],$_POST["admin_password"]);
@@ -15,7 +11,7 @@ if(isset($_POST["submit"]))
 		session_start();
 		$_SESSION["user_id"] = $check[0];
 		$_SESSION["admin_id"] = $check[1];
-		redirect_to("main.php");
+		redirect_to("add_user.php");
 	}
 	else
 		$message="Incorrect username or password";

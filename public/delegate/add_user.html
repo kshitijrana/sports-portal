@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet"
+		      type="text/css"
+              href="style.css">
+		<title>Add User</title>
+	</head>
+
+<body>
+<center>
+	<form action="add_user.php" style=" font-size: 25px; font-family: sans-serif; " method="POST">
+		Name:<br>
+		<input type="text" style=" height: 25px;" pattern="[a-zA-z'. ]*" name="name" required> <br><br>
+		Reg No. :<br>
+		<input type="text" style=" height: 25px;" pattern="[0-9a-zA-Z ]*" name="reg" required><br><br>
+		
+		College : <br>
+		<input type="text" style=" height: 25px;" pattern="[a-zA-z'. ]*" name="coll" required><br><br>
+		
+		Email : <br>
+		<input type="email" style=" height: 25px;"  name="email" required><br><br>
+		
+		Contact No. : (Numeric Only)<br>
+		<input type="text" style=" height: 25px;"	pattern="[+]{0,1}[0-9]{10,15}" 
+		name="cont" required><br><br>
+		Gender :<br>
+		<input type="radio" style=" height: 25px;" value ="male" name="gender"  required>Male<br>
+		<input type="radio" style=" height: 25px;" value ="female" name="gender"  required>Female<br>
+		<button class="button" style="padding: 10px 15px;" type ="submit" name = "secret" >Submit</button>
+		<input class="button" style="padding: 10px 15px;" type="reset">
+	</form>
+</center>
+
+</body>
+</html>
+<header></header>
