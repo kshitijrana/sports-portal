@@ -96,12 +96,12 @@
 	function make_prpstmt_object()
 	{
 		$conn = make_connection("revels17");
-		$query = "INSERT INTO delegates (name, regno, email, phone, college, price) VALUES (?,?,?,?,?,?);";
+		$query = "INSERT INTO delegates (name, regno, email, phone, college, price,organiser_id) VALUES (?,?,?,?,?,?,?);";
 		$stmt = mysqli_prepare($conn,$query);
 		return array($stmt,$conn);
 	}
 
-	function add_delegates($name,$regno,$email,$phone,$college,$price,$stmt,$conn)
+	function add_delegates($name,$regno,$email,$phone,$college,$price,$organiser_id,$stmt,$conn)
 	{
 		//get the escape string
 		$name = mysqli_real_escape_string($conn,$name);
@@ -110,7 +110,8 @@
 		$phone = mysqli_real_escape_string($conn,$phone);
 		$college = mysqli_real_escape_string($conn,$college);
 		$price = mysqli_real_escape_string($conn,$price);
-		mysqli_stmt_bind_param($stmt, 'ssssss', $name, $regno, $email, $phone, $college, $price);
+		$organiser_id = mysqli_real_escape_string($conn,$organiser_id);
+		mysqli_stmt_bind_param($stmt, 'sssssss', $name, $regno, $email, $phone, $college, $price,$organiser_id);
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_fetch($stmt);
 		//mysqli_stmt_close($stmt);
