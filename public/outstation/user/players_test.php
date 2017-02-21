@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once("../../includes/included_functions_delegate.php");
-require_once("../../includes/check_functions.php");
+require_once("../includes/included_functions_delegate.php");
+require_once("../includes/check_functions.php");
 //get the number of players and college name from the session
 $num_of_players=$_SESSION["num_players"];
 $college = $_SESSION["college"];
@@ -56,7 +56,7 @@ if(isset($_POST["submit"]))
 			$id = add_delegates($_POST["name_".($i+1)],$_POST["regno_".($i+1)],$_POST["c_phone"],$_POST["c_email"],$college,200,$_SESSION["admin_id"],$arr[0],$arr[1]);
 			$confirm.="<br><div class = 'result' >".($i+1)."Registration number " . $_POST["regno_".($i+1)] . " registered with id " . $id. "</div>";
 		}
-		$confirm.="<br><br><center>Click <a href='main.php'>here</a> to enter more teams.<center>";
+		$confirm.="<br><br><center>Click <a href='form.php'>here</a> to enter more teams.<center>";
 		$_SESSION["confirm"]=$confirm;
 		redirect_to("confirmation.php");
 	}

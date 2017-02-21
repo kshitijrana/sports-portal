@@ -5,7 +5,7 @@ if (isset($_SESSION['time']) && (time() - $_SESSION['time'] > 600)) {
     echo "Session expired.";
 	session_unset();
 	session_destroy();
-	echo "<br><a href='login.php'>Log in</a>";
+	echo "<br><a href='../index.php'>Log in</a>";
 	die();
 }
 $_SESSION['time'] = time(); // update last activity time stamp
@@ -14,13 +14,13 @@ $_SESSION['time'] = time(); // update last activity time stamp
 <head>
 	<meta charset="UTF-8">
 	<title>Register</title>
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
 </head>
 
 <body>
 	<?php echo "<div align= 'center' style='font-style: italic ;color:red';>".(!empty($_GET['err'])?'Please enter valid details':'')."</div>";?>
-	<form class = "cf" method="POST" action="index_test.php">
-		<div align = "right"><a href="logout.php"><button id="input-submit">Logout</button></a></div>
+	<div align = "right"><a href="logout.php"><button id="input-submit">Logout</button></a></div>
+	<form class = "cf" method="POST" action="form_test.php">
 		<input type="number" name="num_players" placeholder="Number of players (Min : 2)" required autofocus>
 		<br><input type="text" name="college" placeholder="College" required>
 		<center><input type="submit" id = "input-submit" name="submit"></center>

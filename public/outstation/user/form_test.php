@@ -1,13 +1,13 @@
 <?php
-require_once("../../includes/included_functions_delegate.php");
-require_once("../../includes/check_functions.php");
+require_once("../includes/included_functions_delegate.php");
+require_once("../includes/check_functions.php");
 $msg="";
 if(isset($_POST["submit"]))
 {
 	session_start();
 	if(!is_numeric($_POST["num_players"]) or !check_name($_POST["college"]) or ($_POST["num_players"]<1) )
 	{
-		redirect_to("main.php?err=1");
+		redirect_to("form.php?err=1");
 	}
 	else
 	{
