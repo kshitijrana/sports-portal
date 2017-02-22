@@ -54,7 +54,7 @@ if(isset($_POST["submit"]))
 		for($i = 2; $i < $num_of_players; $i++)
 		{
 			$id = add_delegates($_POST["name_".($i+1)],$_POST["regno_".($i+1)],$_POST["c_phone"],$_POST["c_email"],$college,200,$_SESSION["admin_id"],$arr[0],$arr[1]);
-			$confirm.="<br><div class = 'result' >".($i+1)."Registration number " . $_POST["regno_".($i+1)] . " registered with id " . $id. "</div>";
+			$confirm.="<br><div class = 'result' >".($i+1).": Registration number " . $_POST["regno_".($i+1)] . " registered with id " . $id. "</div>";
 		}
 		$confirm.="<br><br><center>Click <a href='form.php'>here</a> to enter more teams.<center>";
 		$_SESSION["confirm"]=$confirm;

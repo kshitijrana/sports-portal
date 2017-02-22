@@ -2,5 +2,7 @@
 require_once("../includes/included_functions_delegate.php");
 session_unset();
 session_destroy();
-redirect_to("../");
 ?>
+<script type="text/javascript">
+	window.top.location.href = "../";
+</script>
